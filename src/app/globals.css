@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #BE185D;
+  --color-primary-container: #FBCFE8;
+  --color-primary-on-container: #831843;
+  --color-secondary: #EC4899;
+  --color-secondary-container: #FCE7F3;
+  --color-secondary-on-container: #9D174D;
+  --color-accent: #DC2626;
+  
+  --font-display: "Playfair Display", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+
+  --animate-float: float 20s infinite ease-in-out alternate;
+
+  @keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(5%, 10%) scale(1.1); }
+    66% { transform: translate(-5%, 5%) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+}
+
+:root {
+  --background: #FFF5F5;
+  --foreground: #0F172A;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: var(--font-body), sans-serif;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display), serif;
+}
+
+/* Aurora Background Styles */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #FFF5F7; /* Soft warm blush */
+}
+
+.aurora-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.glow-1 {
+  width: 60vw;
+  height: 60vw;
+  background: #FBCFE8; /* Warm pink */
+  top: -10%;
+  left: -10%;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.glow-2 {
+  width: 70vw;
+  height: 70vw;
+  background: #FEF3C7; /* Soft gold */
+  bottom: -20%;
+  right: -10%;
+  animation: float 20s infinite ease-in-out alternate -5s;
+}
+
+.glow-3 {
+  width: 50vw;
+  height: 50vw;
+  background: #FCE7F3; /* Lighter pink */
+  top: 40%;
+  left: 30%;
+  animation: float 20s infinite ease-in-out alternate -10s;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(190, 24, 93, 0.05);
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}

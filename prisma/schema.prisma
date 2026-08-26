@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum GuestStatus {
+  PENDING
+  RESPONDED
+}
+
+enum DietaryPreference {
+  OMNIVORO
+  VEGETARIANO
+  VEGANO
+  OTRO
+}
+
+enum SuggestionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Guest {
+  id                 String              @id @default(uuid())
+  partyName          String              @map("party_name")
+  searchableName     String              @map("searchable_name")
+  nickname           String?             @map("nickname")
+  partySizeMax       Int                 @default(2) @map("party_size_max")
+  status             GuestStatus         @default(PENDING)
+  notPreloaded       Boolean             @default(false) @map("not_preloaded")
+  createdAt          DateTime            @default(now()) @map("created_at")
+  rsvps              RSVP[]
+  anecdotes          Anecdote[]
+  spotifySuggestions SpotifySuggestion[]
+  reminderLogs       ReminderLog[]
+
+  @@map("guests")
+}
+
+model RSVP {
+  id           String            @id @default(uuid())
+  guestId      String            @map("guest_id")
+  guest        Guest             @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  attending    Boolean
+  numAdults    Int               @map("num_adults")
+  numKids      Int               @map("num_kids")
+  kidsNames    String?           @map("kids_names") @db.Text
+  dietary      DietaryPreference
+  dietaryNotes String?           @map("dietary_notes") @db.Text
+  contribution String?           @map("contribution") @db.Text
+  phone        String?           @map("phone")
+  language     String?           @map("language")
+  submittedAt  DateTime          @default(now()) @map("submitted_at")
+
+  @@map("rsvps")
+}
+
+model Anecdote {
+  id        String   @id @default(uuid())
+  guestId   String?  @map("guest_id")
+  guest     Guest?   @relation(fields: [guestId], references: [id], onDelete: SetNull)
+  text      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  approved  Boolean  @default(false)
+
+  @@map("anecdotes")
+}
+
+model SpotifySuggestion {
+  id          String           @id @default(uuid())
+  guestId     String           @map("guest_id")
+  guest       Guest            @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  trackId     String           @unique @map("track_id")
+  trackName   String           @map("track_name")
+  artistName  String           @map("artist_name")
+  releaseYear String?          @map("release_year")
+  status      SuggestionStatus @default(PENDING)
+  votes       Int              @default(1)
+  voterIds    String[]         @default([]) @map("voter_ids")
+  suggestedAt DateTime         @default(now()) @map("suggested_at")
+  approvedAt  DateTime?        @map("approved_at")
+
+  @@map("spotify_suggestions")
+}
+
+model SystemConfig {
+  key   String @id
+  value String
+
+  @@map("system_configs")
+}
+
+model ReminderLog {
+  id      String   @id @default(uuid())
+  guestId String   @map("guest_id")
+  guest   Guest    @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  wave    String
+  sentAt  DateTime @default(now()) @map("sent_at")
+
+  @@unique([guestId, wave])
+  @@map("reminder_logs")
+}
+
+

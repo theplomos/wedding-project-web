@@ -1,0 +1,72 @@
+[
+  {
+    "id": "max-mustermann",
+    "partyName": "Max Mustermann",
+    "searchableName": "max mustermann",
+    "nickname": "Max",
+    "partySizeMax": 1
+  },
+  {
+    "id": "erika-musterfrau",
+    "partyName": "Erika Musterfrau",
+    "searchableName": "erika musterfrau",
+    "nickname": "Erika",
+    "partySizeMax": 1
+  },
+  {
+    "id": "juan-perez",
+    "partyName": "Juan Perez",
+    "searchableName": "juan perez",
+    "nickname": "Juancito",
+    "partySizeMax": 1
+  },
+  {
+    "id": "maria-garcia",
+    "partyName": "Maria Garcia",
+    "searchableName": "maria garcia",
+    "nickname": "Mari",
+    "partySizeMax": 1
+  },
+  {
+    "id": "john-doe",
+    "partyName": "John Doe",
+    "searchableName": "john doe",
+    "nickname": "Johnny",
+    "partySizeMax": 1
+  },
+  {
+    "id": "jane-smith",
+    "partyName": "Jane Smith",
+    "searchableName": "jane smith",
+    "nickname": "Jane",
+    "partySizeMax": 1
+  },
+  {
+    "id": "carlos-silva",
+    "partyName": "Carlos Silva",
+    "searchableName": "carlos silva",
+    "nickname": "Carlinhos",
+    "partySizeMax": 1
+  },
+  {
+    "id": "ana-sousa",
+    "partyName": "Ana Sousa",
+    "searchableName": "ana sousa",
+    "nickname": "Aninha",
+    "partySizeMax": 1
+  },
+  {
+    "id": "lucas-weber",
+    "partyName": "Lucas Weber",
+    "searchableName": "lucas weber",
+    "nickname": "Luke",
+    "partySizeMax": 1
+  },
+  {
+    "id": "sophie-muller",
+    "partyName": "Sophie Müller",
+    "searchableName": "sophie muller",
+    "nickname": "Soph",
+    "partySizeMax": 1
+  }
+]

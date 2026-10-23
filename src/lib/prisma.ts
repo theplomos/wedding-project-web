@@ -7,10 +7,15 @@ const globalForPrisma = globalThis as unknown as {
   pgPool: Pool | undefined
 }
 
-const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL_NON_POOLING
+const connectionString =
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  process.env.DIRECT_URL
 
 if (!connectionString) {
-  throw new Error('Database connection string (POSTGRES_PRISMA_URL or POSTGRES_URL_NON_POOLING) is missing from environment variables.')
+  throw new Error('Database connection string (POSTGRES_PRISMA_URL, POSTGRES_URL, DATABASE_URL, or POSTGRES_URL_NON_POOLING) is missing from environment variables.')
 }
 
 // Reuse the pool and client in development to prevent exhausting database connections
